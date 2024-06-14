@@ -1,0 +1,4 @@
+.idea/*
+*.png
+*.npy
+*/__pycache__/*
