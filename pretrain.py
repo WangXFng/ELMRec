@@ -35,7 +35,7 @@ parser.add_argument('--negative_num', type=int, default=99,
                     help='number of negative items for top-n recommendation')
 # -----
 # alpha -> direct: {'Sports': 5, 'Beauty': 9, 'Toys': 9} sequential : {'Sports': 11, 'Beauty': 6, 'Toys': 1}
-parser.add_argument('--alpha', type=int, default=11,
+parser.add_argument('--alpha', type=int, default=5,
                     help='weight of whole-word embeddings')
 # sigma -> direct: {'Sports': 5, 'Beauty': 6, 'Toys': 5} sequential : {'Sports': 5, 'Beauty': 6, 'Toys': 5}
 parser.add_argument('--sigma', type=int, default=5,
