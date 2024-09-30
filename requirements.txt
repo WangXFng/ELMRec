@@ -79,7 +79,7 @@ openjpeg=2.4.0=h3ad879b_0
 openssl=3.0.13=h7f8727e_0
 optuna=3.6.0=pypi_0
 packaging=24.0=pypi_0
-pillow=10.2.0=py310h5eee18b_0
+pillow=10.4.0=pypi_0
 pip=23.3.1=py310h06a4308_0
 pysocks=1.7.1=py310h06a4308_0
 python=3.10.14=h955ad1f_0
@@ -93,7 +93,7 @@ requests=2.31.0=py310h06a4308_1
 safetensors=0.4.2=pypi_0
 scipy=1.12.0=pypi_0
 sentencepiece=0.2.0=pypi_0
-setuptools=68.2.2=py310h06a4308_0
+setuptools=75.1.0=pypi_0
 sqlalchemy=2.0.29=pypi_0
 sqlite=3.41.2=h5eee18b_0
 sympy=1.12=py310h06a4308_0
