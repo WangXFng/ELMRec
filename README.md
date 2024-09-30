@@ -3,6 +3,9 @@
 - Enhancing High-order Interaction Awareness in LLM-based Recommender Model, **EMNLP 2024 Main (Long)**.
 - [**Xinfeng Wang**](https://wangxfng.github.io/), Jin Cui, Fumiyo Fukumoto, and Yoshimi Suzuki.
 
+![LOGO](./build-resources/framework.png)
+
+
 ## Note
 - The checkpoints of the ELMRec model will be uploaded on [Google Drive](https://drive.google.com/drive/folders/131UDvFsUbJHr-G1um4XUNpMfvIJ54FMj?usp=sharing).
 - If you have any questions, please feel free to contact me at kaysenn@163.com.
@@ -83,7 +86,7 @@
 ## Citation
 If this repository helps you, please cite:
 
-	@inproceedings{wang2024rdrec,
+	@inproceedings{wang2024elmrec,
 	  title={Enhancing High-order Interaction Awareness in LLM-based Recommender Model},
 	  author={Wang, Xinfeng and Cui, Jin and Fukumoto, Fumiyo and Suzuki, Yoshimi},
 	  booktitle={Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},
