@@ -1,6 +1,6 @@
-# ELMRec
+# ELMRec (EMNLP'24)
 ## Paper - [[ArXiv]](https://arxiv.org/pdf/2409.19979)
-- Enhancing High-order Interaction Awareness in LLM-based Recommender Model, **EMNLP 2024 Main (Long Paper)**.
+- Enhancing High-order Interaction Awareness in LLM-based Recommender Model, **EMNLP 2024 Main**.
 - [**Xinfeng Wang**](https://wangxfng.github.io/), Jin Cui, Fumiyo Fukumoto, and Yoshimi Suzuki.
 
 ![LOGO](./build-resources/framework.png)
