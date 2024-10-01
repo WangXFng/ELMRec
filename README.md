@@ -1,34 +1,34 @@
 # ELMRec
-## Paper
-- Enhancing High-order Interaction Awareness in LLM-based Recommender Model, **EMNLP 2024 Main (Long)**.
+## Paper - [[ArXiv]](https://arxiv.org/pdf/2409.19979)
+- Enhancing High-order Interaction Awareness in LLM-based Recommender Model, **EMNLP 2024 Main (Long Paper)**.
 - [**Xinfeng Wang**](https://wangxfng.github.io/), Jin Cui, Fumiyo Fukumoto, and Yoshimi Suzuki.
 
 ![LOGO](./build-resources/framework.png)
 
 
 ## Note
-- The checkpoints of the ELMRec model will be uploaded on [Google Drive](https://drive.google.com/drive/folders/131UDvFsUbJHr-G1um4XUNpMfvIJ54FMj?usp=sharing).
+- The checkpoints of ELMRec were uploaded on [Google Drive](https://drive.google.com/drive/folders/131UDvFsUbJHr-G1um4XUNpMfvIJ54FMj?usp=sharing).
 - If you have any questions, please feel free to contact me at kaysenn@163.com.
 
 
 ## Train and test ELMRec
-### (1) Install requirement 
-        >> pip install -r  requirement.txt
+### (1) Install requirements 
+        >> pip install -r requirements.txt
 
-### (2) Pretraining
+### (2) Pretraining ({dataset}: beauty, sports, and toys.) (under ./ELMRec )
         >> python pretrain.py ./data/{dataset}/ --cuda --batch_size 64 --checkpoint ./checkpoint/{dataset}/
 
-### (3) Inference
-        >> python seq_reranker.py ./data/{dataset}/ --cuda --batch_size 32 --checkpoint ./checkpoint/{dataset}/
-        >> python topn.py ./data/{dataset}/ --cuda --batch_size 32 --checkpoint ./checkpoint/{dataset}/
-        >> python exp.py ./data/{dataset}/ --cuda --batch_size 32 --checkpoint ./checkpoint/{dataset}/
+### (3) Inference ({dataset}: beauty, sports, and toys.) (under ./ELMRec )
+        >> python seq_reranker.py ./data/{dataset}/ --cuda --batch_size 16 --checkpoint ./checkpoint/{dataset}/
+        >> python topn.py ./data/{dataset}/ --cuda --batch_size 16 --checkpoint ./checkpoint/{dataset}/
+        >> python exp.py ./data/{dataset}/ --cuda --batch_size 16 --checkpoint ./checkpoint/{dataset}/
 
 ## Parameters
 <table>
   <tr>
     <th>Dataset</th>
-    <th colspan="4">DirRec</th>
-    <th colspan="4">SeqRec</th>
+    <th colspan="4">Direct Recommendation</th>
+    <th colspan="4">Sequential Recommendation</th>
   </tr>
   <tr>
     <td></td>
