@@ -85,6 +85,7 @@
 
 ## Citation
 If this repository helps you, please cite:
+
  	@article{wang2024enhancing,
   	  title={Enhancing High-order Interaction Awareness in LLM-based Recommender Model},
   	  author={Wang, Xinfeng and Cui, Jin and Fukumoto, Fumiyo and Suzuki, Yoshimi},
