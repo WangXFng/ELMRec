@@ -86,9 +86,11 @@
 ## Citation
 If this repository helps you, please cite:
 
- 	@article{wang2024enhancing,
-  	  title={Enhancing High-order Interaction Awareness in LLM-based Recommender Model},
-  	  author={Wang, Xinfeng and Cui, Jin and Fukumoto, Fumiyo and Suzuki, Yoshimi},
-  	  journal={arXiv preprint arXiv:2409.19979},
-  	  year={2024}
-	}
+    @inproceedings{wang2024enhancing,
+      title={Enhancing High-order Interaction Awareness in LLM-based Recommender Model},
+      author={Wang, Xinfeng and Cui, Jin and Fukumoto, Fumiyo and Suzuki, Yoshimi},
+      booktitle={Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},
+      pages={11696--11711},
+      year={2024}
+    }
+
