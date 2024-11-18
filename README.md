@@ -24,7 +24,7 @@
         >> python topn.py ./data/{dataset}/ --cuda --batch_size 16 --checkpoint ./checkpoint/{dataset}/
         >> python exp.py ./data/{dataset}/ --cuda --batch_size 16 --checkpoint ./checkpoint/{dataset}/
 
-## Parameters
+## Parameters (Table 9)
 <table>
   <tr>
     <th>Dataset</th>
@@ -48,7 +48,7 @@
     <td>5</td>
     <td>10</td>
     <td>4</td>
-    <td>11</td>
+    <td>1</td>
     <td>5</td>
     <td>10</td>
     <td>4</td>
@@ -66,11 +66,11 @@
   </tr>
   <tr>
     <td>Toys</td>
-    <td>9</td>
+    <td>11</td>
     <td>5</td>
     <td>10</td>
     <td>4</td>
-    <td>5</td>
+    <td>9</td>
     <td>5</td>
     <td>10</td>
     <td>4</td>
