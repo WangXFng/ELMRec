@@ -9,6 +9,7 @@
 ## Note
 - The checkpoints of ELMRec were uploaded on [Google Drive](https://drive.google.com/drive/folders/131UDvFsUbJHr-G1um4XUNpMfvIJ54FMj?usp=sharing).
 - If you have any questions, please feel free to contact me at kaysenn@163.com.
+- Thanks to linglingl635's careful check, I could recheck and correct Table 9. If you have any questions about this, please check the latest version on arXiv.
 
 
 ## Train and test ELMRec
