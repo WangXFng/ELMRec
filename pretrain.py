@@ -88,7 +88,6 @@ topn_iterator = TopNBatchify(seq_corpus.user2items_positive, seq_corpus.user2ite
 ###############################################################################
 # Build the model
 ###############################################################################
-
 model = Solomon.from_pretrained(model_version)
 model.init_graph_embeddings(args.alpha, args.sigma, args.L, exp_corpus.train, nuser, nitem)
 model.init_prompt(args.task_num, args.prompt_num, device)
@@ -98,8 +97,6 @@ optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
 ###############################################################################
 # Training code
 ###############################################################################
-
-
 def train():
     # Turn on training mode which enables dropout.
     model.train()

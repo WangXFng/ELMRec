@@ -5,6 +5,11 @@
 ![LOGO](./build-resources/framework.png)
 
 
+## Note
+- The checkpoints of ELMRec were uploaded on [Google Drive](https://drive.google.com/drive/folders/131UDvFsUbJHr-G1um4XUNpMfvIJ54FMj?usp=sharing).
+- If you have any questions, please feel free to contact me at kaysenn@163.com.
+
+
 ## Train and test ELMRec
 ### (1) Install requirements 
         >> pip install -r requirements.txt
@@ -17,10 +22,6 @@
         >> python topn.py ./data/{dataset}/ --cuda --batch_size 16 --checkpoint ./checkpoint/{dataset}/
         >> python exp.py ./data/{dataset}/ --cuda --batch_size 16 --checkpoint ./checkpoint/{dataset}/
 
-
-## Note
-- The checkpoints of ELMRec were uploaded on [Google Drive](https://drive.google.com/drive/folders/131UDvFsUbJHr-G1um4XUNpMfvIJ54FMj?usp=sharing).
-- If you have any questions, please feel free to contact me at kaysenn@163.com.
 
 
 ### Parameters (Table 9)
@@ -94,6 +95,6 @@ If this repository helps you, please cite:
 
 
 ## Acknowledgement
-- Code reference: [P5](https://github.com/jeykigung/P5), [POD](https://github.com/lileipisces/POD)
+- Code reference: [P5](https://github.com/jeykigung/P5) [POD](https://github.com/lileipisces/POD)
 - Thanks to linglingl635's careful check, I could recheck and correct Table 9. If you have any questions about this, please check the latest version on arXiv.
-- Thanks to Wei-Hsiang Huang's careful review, the widely used reivew data(i.e., [P5](https://github.com/jeykigung/P5), [VIP5](https://github.com/jeykigung/VIP5), and [POD](https://github.com/lileipisces/POD)) could potentially leak information. The follow-up work will avoid this.
+- Thanks to Wei-Hsiang Huang's careful review, the widely used reivew data(e.g., [P5](https://github.com/jeykigung/P5) and [POD](https://github.com/lileipisces/POD)) could potentially leak information. The follow-up work will avoid this.
