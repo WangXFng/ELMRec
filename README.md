@@ -94,7 +94,6 @@ If this repository helps you, please cite:
 
 
 ## Acknowledgement
-- [P5](https://github.com/jeykigung/P5)
-- [POD](https://github.com/lileipisces/POD)
+- Code reference: [P5](https://github.com/jeykigung/P5), [POD](https://github.com/lileipisces/POD)
 - Thanks to linglingl635's careful check, I could recheck and correct Table 9. If you have any questions about this, please check the latest version on arXiv.
-- Thanks to Wei-Hsiang Huang's careful review, the explanation generation data from [P5](https://github.com/jeykigung/P5), [VIP5](https://github.com/jeykigung/VIP5), and [POD](https://github.com/lileipisces/POD) could potentially leak information. The follow-up work will avoid this.
+- Thanks to Wei-Hsiang Huang's careful review, the widely used reivew data(i.e., [P5](https://github.com/jeykigung/P5), [VIP5](https://github.com/jeykigung/VIP5), and [POD](https://github.com/lileipisces/POD)) could potentially leak information. The follow-up work will avoid this.
