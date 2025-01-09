@@ -3,7 +3,7 @@ import torch
 import argparse
 from transformers import T5Tokenizer
 from model.module import Solomon
-from util.utils import ExpDataLoader, SeqDataLoader, TrainBatchify, ExpBatchify, SeqBatchify, TopNBatchify, now_time
+from util.utils import DataLoader, TrainBatchify, ExpBatchify, SeqBatchify, TopNBatchify, now_time
 
 
 parser = argparse.ArgumentParser(description='ELMRec')
@@ -34,7 +34,7 @@ parser.add_argument('--exp_len', type=int, default=20,
 parser.add_argument('--negative_num', type=int, default=99,
                     help='number of negative items for top-n recommendation')
 # -----
-# alpha -> direct: {'Sports': 5, 'Beauty': 9, 'Toys': 9} sequential : {'Sports': 11, 'Beauty': 6, 'Toys': 1}
+# alpha -> direct: {'Sports': 5, 'Beauty': 9, 'Toys': 11} sequential : {'Sports': 1, 'Beauty': 6, 'Toys': 9}
 parser.add_argument('--alpha', type=int, default=11,
                     help='weight of whole-word embeddings')
 # sigma -> direct: {'Sports': 5, 'Beauty': 6, 'Toys': 5} sequential : {'Sports': 5, 'Beauty': 6, 'Toys': 5}
@@ -76,21 +76,18 @@ model_path = os.path.join(args.checkpoint, 'model.pt')
 
 print(now_time() + 'Loading data')
 tokenizer = T5Tokenizer.from_pretrained(model_version)
-exp_corpus = ExpDataLoader(args.data_dir)
-seq_corpus = SeqDataLoader(args.data_dir)
-nuser = len(seq_corpus.user2items_positive)
-nitem = len(seq_corpus.id2item)
-all_iterator = TrainBatchify(exp_corpus.train, seq_corpus.user2items_positive, args.negative_num, nitem, tokenizer, args.exp_len, args.batch_size)
-exp_iterator = ExpBatchify(exp_corpus.valid, seq_corpus.user2items_positive, tokenizer, args.exp_len, args.batch_size)
-seq_iterator = SeqBatchify(seq_corpus.user2items_positive, tokenizer, args.batch_size)
-topn_iterator = TopNBatchify(seq_corpus.user2items_positive, seq_corpus.user2items_negative, args.negative_num, nitem, tokenizer, args.batch_size)
+corpus = DataLoader(args.data_dir)
+nuser, nitem = len(corpus.user2items_positive), len(corpus.id2item)
+all_iterator = TrainBatchify(corpus.train, corpus.user2items_positive, args.negative_num, nitem, tokenizer, args.exp_len, args.batch_size)
+exp_iterator = ExpBatchify(corpus.valid, corpus.user2items_positive, tokenizer, args.exp_len, args.batch_size)
+seq_iterator = SeqBatchify(corpus.user2items_positive, tokenizer, args.batch_size)
+topn_iterator = TopNBatchify(corpus.user2items_positive, corpus.user2items_negative, args.negative_num, nitem, tokenizer, args.batch_size)
 
 ###############################################################################
 # Build the model
 ###############################################################################
-
 model = Solomon.from_pretrained(model_version)
-model.init_graph_embeddings(args.alpha, args.sigma, args.L, exp_corpus.train, nuser, nitem)
+model.init_graph_embeddings(args.alpha, args.sigma, args.L, corpus.train, nuser, nitem)
 model.init_prompt(args.task_num, args.prompt_num, device)
 model.to(device)
 optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
@@ -98,8 +95,6 @@ optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
 ###############################################################################
 # Training code
 ###############################################################################
-
-
 def train():
     # Turn on training mode which enables dropout.
     model.train()

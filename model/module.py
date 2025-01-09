@@ -104,24 +104,20 @@ class Solomon(T5ForConditionalGeneration):
     def input_plus_whole_word(self, input_ids, whole_word_ids):
         text_emb = self.shared(input_ids)  # (batch_size, src_len, emsize)
         whole_word_emb = self.whole_word_embeddings(whole_word_ids)
-        text_emb_plus = text_emb + whole_word_emb * 5
+        text_emb_plus = text_emb + whole_word_emb * self.alpha
 
         return text_emb_plus
 
     def input_plus_graph_aware_whole_word(self, input_ids, whole_word_ids):
         text_emb = self.shared(input_ids)  # (batch_size, src_len, emsize)
-        graph_positional_encoding = self.graph_convolution(self.L)[whole_word_ids]
-        text_emb_plus = text_emb + graph_positional_encoding * 5
-        # whole_word_emb = self.whole_word_embeddings(user_item_ids)
-        # text_emb_plus = text_emb + whole_word_emb
-
+        graph_aware_whole_word = self.graph_convolution(self.L)[whole_word_ids]
+        text_emb_plus = text_emb + graph_aware_whole_word * self.alpha
         return text_emb_plus
 
     def append_prompt(self, task_id, input_ids, whole_word_ids, attention_mask):
         # prompt
         batch_size = task_id.size(0)
 
-        # (batch_size, prompts_per_task)
         task_ids = (task_id * self.prompts_per_task).unsqueeze(1) + self.prompt_offset.repeat(batch_size, 1)
         prompt = self.prompt_embeddings(task_ids)  # (batch_size, prompts_per_task, input_size)
 

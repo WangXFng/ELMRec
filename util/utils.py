@@ -33,17 +33,7 @@ def bleu_score(references, generated, n_gram=4, smooth=False):
     return bleu_s * 100
 
 
-class ExpDataLoader:
-    def __init__(self, data_dir):
-        with open(data_dir + 'explanation.json', 'r') as f:
-            self.exp_data = json.load(f)
-
-        self.train = self.exp_data['train']
-        self.valid = self.exp_data['val']
-        self.test = self.exp_data['test']
-
-
-class SeqDataLoader:
+class DataLoader:
     def __init__(self, data_dir):
         self.user2items_positive = {}
         with open(data_dir + 'sequential.txt', 'r') as f:
@@ -62,6 +52,13 @@ class SeqDataLoader:
         self.id2user = datamaps['id2user']
         self.id2item = datamaps['id2item']
 
+        with open(data_dir + 'explanation.json', 'r') as f:
+            self.exp_data = json.load(f)
+
+        self.train = self.exp_data['train']
+        self.valid = self.exp_data['val']
+        self.test = self.exp_data['test']
+
 
 def compute_whole_word_id(task_id, seq_batch, tokenizer, max_len, user_num):
     whole_word_ids = []
@@ -79,28 +76,26 @@ def compute_whole_word_id(task_id, seq_batch, tokenizer, max_len, user_num):
             end_indices.append(mover)
 
         whole_word_id = [0] * len(token_list)  # padding
-        # len_ = len(start_indices)
 
+        # # # random whole-word embedding
         # array = list(range(0, len(start_indices)))
         # random.shuffle(array)
 
         for i, (start, end) in enumerate(zip(start_indices, end_indices)):
-            if task_id == 1:  # sequential recommendation task
-                # # # whole_word_id[start:end] = [array[i] + 1] * (end - start)  # shuffle
-                # if token_list[start] == '▁user':
-                #     idx = int(''.join(token_list[start + 2:end]))
-                #     whole_word_id[start:end] = [512 + idx] * (end - start)  # leave 0 as padding token
-                # else:
+            # sequential recommendation task
+            if task_id == 1:
                 whole_word_id[start:end] = [i + 1] * (end - start)  # leave 0 as padding token
-            else:  # other recommendation tasks
+
+            # other recommendation tasks
+            else:
                 if start+2 == end:
                     continue
                 idx = int(''.join(token_list[start + 2:end]))
                 # ['▁user', '_', '122', '52', '▁item', '_', '86', '68']
                 if token_list[start] == '▁user':
-                    whole_word_id[start:end] = [idx] * (end - start)  # leave 0 as padding token
+                    whole_word_id[start:end] = [idx] * (end - start)
                 else:
-                    whole_word_id[start:end] = [idx + user_num] * (end - start)  # leave 0 as padding token
+                    whole_word_id[start:end] = [idx + user_num] * (end - start)
 
         whole_word_ids.append(whole_word_id)
 

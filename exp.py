@@ -2,10 +2,10 @@ import os
 import torch
 import argparse
 from transformers import T5Tokenizer
-from util.utils import rouge_score, bleu_score, ExpDataLoader, ExpBatchify, now_time, ids2tokens
+from util.utils import rouge_score, bleu_score, DataLoader, ExpBatchify, now_time, ids2tokens
 
 
-parser = argparse.ArgumentParser(description='POD (PrOmpt Distillation)')
+parser = argparse.ArgumentParser(description='ELMRec')
 parser.add_argument('--data_dir', type=str, default=None,
                     help='directory for loading the data')
 parser.add_argument('--model_version', type=int, default=0,
@@ -14,7 +14,7 @@ parser.add_argument('--batch_size', type=int, default=32,
                     help='batch size')
 parser.add_argument('--cuda', action='store_true',
                     help='use CUDA')
-parser.add_argument('--checkpoint', type=str, default='./pod/',
+parser.add_argument('--checkpoint', type=str, default='./ELMRec/',
                     help='directory to load the final model')
 parser.add_argument('--outf', type=str, default='generated.txt',
                     help='output file for generated text')
@@ -60,8 +60,8 @@ prediction_path = os.path.join(args.checkpoint, args.outf)
 
 print(now_time() + 'Loading data')
 tokenizer = T5Tokenizer.from_pretrained(model_version)
-exp_corpus = ExpDataLoader(args.data_dir)
-exp_iterator = ExpBatchify(exp_corpus.test, tokenizer, args.exp_len, args.batch_size)
+corpus = DataLoader(args.data_dir)
+exp_iterator = ExpBatchify(corpus.test, tokenizer, args.exp_len, args.batch_size)
 
 ###############################################################################
 # Test the model

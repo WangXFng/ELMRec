@@ -3,7 +3,7 @@ import torch
 import random
 import argparse
 from transformers import T5Tokenizer
-from util.utils import SeqDataLoader, SeqBatchify, now_time, evaluate_ndcg, evaluate_hr
+from util.utils import DataLoader, SeqBatchify, now_time, evaluate_ndcg, evaluate_hr
 
 
 parser = argparse.ArgumentParser(description='ELMRec')
@@ -58,9 +58,9 @@ model_path = os.path.join(args.checkpoint, 'model.pt')
 
 print(now_time() + 'Loading data')
 tokenizer = T5Tokenizer.from_pretrained(model_version)
-seq_corpus = SeqDataLoader(args.data_dir)
-nitem = len(seq_corpus.id2item)
-seq_iterator = SeqBatchify(seq_corpus.user2items_positive, tokenizer, args.batch_size)
+corpus = DataLoader(args.data_dir)
+nitem = len(corpus.id2item)
+seq_iterator = SeqBatchify(corpus.user2items_positive, tokenizer, args.batch_size)
 
 ###############################################################################
 # Test the model
@@ -107,7 +107,7 @@ idss_predicted = generate()
 print(now_time() + 'Evaluation')
 user2item_test = {}
 interacted_items = {}
-for user, item_list in seq_corpus.user2items_positive.items():
+for user, item_list in corpus.user2items_positive.items():
     user2item_test[user] = [int(item_list[-1])]
     interacted_items[user] = [int(item_id) for item_id in item_list[:-1]]
 
